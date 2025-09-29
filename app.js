@@ -1,0 +1,60 @@
+import express from "express";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import passport from "passport";
+import session from "express-session";
+import connectPgSimple from "connect-pg-simple";
+import pool from "./config/database.js";
+import routes from "./routes/index.js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+// ---------------- General Setup ----------------
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.set("views", join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+// ---------------- Session Setup ----------------
+
+const PgSession = connectPgSimple(session);
+
+app.use(
+  session({
+    store: new PgSession({
+      pool: pool,
+      tableName: "session",
+    }),
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000, // 1 day cookie validity
+    },
+  })
+);
+
+// ---------------- Passport Authentication ----------------
+
+app.use(passport.session());
+
+// ---------------- Routes ----------------
+
+app.use("/", routes);
+
+// ---------------- Server ----------------
+
+app.listen(3000, (error) => {
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+  console.log("Express App started at http://localhost:3000");
+});
