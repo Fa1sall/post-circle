@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS users(
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    username varchar(50) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    isMember BOOLEAN DEFAULT FALSE,
+    isAdmin BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS posts(
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    title varchar(60) NOT NULL,
+    body TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
