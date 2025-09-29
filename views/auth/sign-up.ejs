@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostCircle - Sign Up</title>
+  </head>
+  <body>
+    <div>
+      <h2>Sign Up</h2>
+      <form action="/auth/sign-up" method="post">
+        <label for="first_name">First Name</label>
+        <input
+          type="text"
+          name="first_name"
+          id="first_name"
+          maxlength="50"
+          required
+          value="<%= formData?.first_name || '' %>"
+        />
+        <%if(errors && errors["first_name"]){%>
+        <p><%= errors["first_name"].msg%></p>
+        <%}%>
+        <label for="last_name">Last Name</label>
+        <input
+          type="text"
+          name="last_name"
+          id="last_name"
+          maxlength="50"
+          required
+          value="<%= formData?.last_name || '' %>"
+        />
+        <%if(errors && errors["last_name"]){%>
+        <p><%= errors["last_name"].msg%></p>
+        <%}%>
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          maxlength="50"
+          required
+          value="<%= formData?.username || '' %>"
+        />
+        <%if(errors && errors["username"]){%>
+        <p><%= errors["username"].msg%></p>
+        <%}%>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          value="<%= formData?.password || '' %>"
+        />
+        <%if(errors && errors["password"]){%>
+        <p><%= errors["password"].msg%></p>
+        <%}%>
+        <label for="confirm_password">Confirm Password</label>
+        <input
+          type="password"
+          name="confirm_password"
+          id="confirm_password"
+          required
+          value="<%= formData?.confirm_password || '' %>"
+        />
+        <%if(errors && errors["confirm_password"]){%>
+        <p><%= errors["confirm_password"].msg%></p>
+        <%}%>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </body>
+</html>
