@@ -3,6 +3,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import passport from "passport";
 import session from "express-session";
+import "./config/passport.js"; // Important!
 import connectPgSimple from "connect-pg-simple";
 import pool from "./config/database.js";
 import routes from "./routes/index.js";
@@ -48,6 +49,11 @@ app.use(passport.session());
 // ---------------- Routes ----------------
 
 app.use("/", routes);
+
+app.use((err, req, res, next) => {
+  console.log(err.stack);
+  res.status(500).render("error", { message: "Internal Server Error" });
+});
 
 // ---------------- Server ----------------
 

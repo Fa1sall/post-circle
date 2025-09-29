@@ -4,7 +4,7 @@ import pool from "./database.js";
 import { validatePassword } from "../utils/password.js";
 
 // Setup Local Strategy
-const LocalStrategy = new passportlocal.Strategy();
+const LocalStrategy = passportlocal.Strategy;
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
