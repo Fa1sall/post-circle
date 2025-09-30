@@ -51,3 +51,21 @@ export const validateUser = [
     })
     .withMessage("Please enter the same password"),
 ];
+
+export const validateLogin = [
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage("Username is required")
+    .isLength({ max: 50 })
+    .withMessage("Username must be within 50 characters")
+    .matches(/^[a-zA-Z0-9._-]+$/)
+    .withMessage(
+      "Username can contain letters, numbers, '.', '-', '_' but no spaces"
+    ),
+  body("password")
+    .notEmpty()
+    .withMessage("Password is required")
+    .isLength({ min: 8, max: 20 })
+    .withMessage("Password must be between 8 - 20 characters"),
+];

@@ -46,13 +46,7 @@
         <p><%= errors["username"].msg%></p>
         <%}%>
         <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          value="<%= formData?.password || '' %>"
-        />
+        <input type="password" name="password" id="password" required />
         <%if(errors && errors["password"]){%>
         <p><%= errors["password"].msg%></p>
         <%}%>
@@ -62,7 +56,6 @@
           name="confirm_password"
           id="confirm_password"
           required
-          value="<%= formData?.confirm_password || '' %>"
         />
         <%if(errors && errors["confirm_password"]){%>
         <p><%= errors["confirm_password"].msg%></p>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostCircle - Login</title>
+  </head>
+  <body>
+    <div>
+      <h2>Login</h2>
+      <%if(errors && errors["login_error"]){%>
+      <p><%= errors["login_error"]%></p>
+      <%}%>
+      <form action="/auth/login" method="post">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          maxlength="50"
+          required
+          value="<%= formData?.username || '' %>"
+        />
+        <%if(errors && errors["username"]){%>
+        <p><%= errors["username"].msg%></p>
+        <%}%>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <%if(errors && errors["password"]){%>
+        <p><%= errors["password"].msg%></p>
+        <%}%>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
