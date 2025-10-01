@@ -24,7 +24,10 @@ passport.use(
       if (!match) {
         return done(null, false, { message: "Incorrect Password" });
       }
-      return done(null, user);
+
+      let safeUser = Object.assign({}, user);
+      delete safeUser.password;
+      return done(null, safeUser);
     } catch (error) {
       if (error) {
         return done(error);
@@ -39,9 +42,10 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [
-      id,
-    ]);
+    const { rows } = await pool.query(
+      "SELECT id, first_name, last_name, username, ismember, isadmin FROM users WHERE id = $1",
+      [id]
+    );
     const user = rows[0];
     if (!user) {
       return done(null, false);
