@@ -1,20 +1,20 @@
 import { Router } from "express";
 import { validateUser, validateLogin } from "../middlewares/validation.js";
 import {
-  getSignUp,
-  postSignUp,
-  getLogin,
-  postLogin,
+  renderSignUpPage,
+  handleSignUp,
+  renderLoginPage,
+  handleLogin,
 } from "../controllers/authController.js";
 
 const authRouter = Router();
 
-authRouter.get("/sign-up", getSignUp);
+authRouter.get("/sign-up", renderSignUpPage);
 
-authRouter.post("/sign-up", validateUser, postSignUp);
+authRouter.post("/sign-up", validateUser, handleSignUp);
 
-authRouter.get("/login", getLogin);
+authRouter.get("/login", renderLoginPage);
 
-authRouter.post("/login", validateLogin, postLogin);
+authRouter.post("/login", validateLogin, handleLogin);
 
 export default authRouter;

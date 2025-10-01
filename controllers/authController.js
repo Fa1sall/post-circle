@@ -5,11 +5,11 @@ import passport from "passport";
 
 // Sign-Up Controllers
 
-export const getSignUp = (req, res) => {
+export const renderSignUpPage = (req, res) => {
   res.render("auth/sign-up", { errors: {}, formData: {} });
 };
 
-export const postSignUp = async (req, res) => {
+export const handleSignUp = async (req, res) => {
   const errors = validationResult(req);
   const { first_name, last_name, username, password } = req.body;
   console.log(errors.mapped());
@@ -27,11 +27,11 @@ export const postSignUp = async (req, res) => {
 
 // Login Controllers
 
-export const getLogin = (req, res) => {
+export const renderLoginPage = (req, res) => {
   res.render("auth/login", { errors: {}, formData: {} });
 };
 
-export const postLogin = (req, res, next) => {
+export const handleLogin = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.render("auth/login", {
@@ -56,7 +56,7 @@ export const postLogin = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.redirect("/posts");
+      res.redirect("/posts/create");
     });
   })(req, res, next);
 };
