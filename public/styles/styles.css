@@ -1,1 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Boogaloo&family=Chewy&family=Gloria+Hallelujah&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Patrick+Hand&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-hero1: "Montserrat", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-hero2: "Luckiest Guy", "Comic Sans MS", cursive;
+
+  --font-post-title1:
+    "Montserrat", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-post-title2: "Chewy", "Comic Sans MS", cursive;
+  --font-post-title3: "Boogaloo", "Comic Sans MS", cursive;
+
+  --font-body1: "Montserrat", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-body2: "Patrick Hand", "Comic Sans MS", cursive;
+
+  --font-username1: "Montserrat", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-username2: "Amatic SC", "Comic Sans MS", cursive;
+
+  --font-button1: "Montserrat", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-button2: "Boogaloo", "Comic Sans MS", cursive;
+
+  --font-badge1: "Montserrat", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-badge2: "Gloria Hallelujah", "Comic Sans MS", cursive;
+
+  /* Backgrounds */
+  --color-bg1: #0f0e17;
+  --color-bg2: #fffffe;
+  --color-card1: #0f0e17;
+  --color-card2: #fffffe;
+
+  /* Headlines / Text */
+  --color-headline1: #fffffe;
+  --color-headline2: #0f0e17;
+  --color-subheadline1: #2e2f3e;
+  --color-paragraph1: #a7a9be;
+  --color-card-heading1: #fffffe;
+  --color-card-heading2: #0f0e17;
+  --color-card-paragraph1: #a7a9be;
+
+  /* Tags / Highlights */
+  --color-card-tag-bg1: #ff8906;
+  --color-card-tag-text1: #fffffe;
+  --color-card-highlight1: #e53170;
+
+  /* Buttons */
+  --color-btn1-bg: #ff8906;
+  --color-btn1-text: #fffffe;
+  --color-btn2-bg: #f25f4c;
+  --color-btn2-text: #fffffe;
+
+  /* Illustration / icons */
+  --color-ill-stroke: #000000;
+  --color-ill-main: #fffffe;
+  --color-ill-highlight: #ff8906;
+  --color-ill-secondary: #f25f4c;
+  --color-ill-tertiary: #e53170;
+}

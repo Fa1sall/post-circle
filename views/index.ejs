@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostCircle</title>
+    <link rel="icon" href="/images/logo-1.png" type="image/png" />
+    <link rel="stylesheet" href="/styles/output.css" />
+  </head>
+  <body class="bg-bg1 text-headline1">
+    <!-- Sidebar -->
+    <aside class="flex justify-between px-3 sm:px-6 py-6">
+      <div class="flex items-center gap-2">
+        <img
+          src="/images/logo-1.png"
+          alt="postcircle logo"
+          class="w-12 md:w-16"
+        />
+        <p class="text-lg sm:text-2xl font-bold font-hero1">
+          <span class="text-ill-highlight">P</span><span>ost</span
+          ><span class="text-ill-highlight">C</span><span>ircle</span>
+        </p>
+      </div>
+      <div
+        class="flex justify-center items-center font-button2 text-sm sm:text-xl"
+      >
+        <ul class="flex gap-5">
+          <li>
+            <a href="/auth/login" class="bg-btn1-bg text-btn1-text p-2 rounded"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a
+              href="/auth/sign-up"
+              class="bg-btn1-bg text-btn1-text p-2 rounded"
+              >Sign Up</a
+            >
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <main>
+      <section
+        class="flex flex-col mt-4 md:flex-row items-center justify-center md:gap-10 px-3 sm:px-6 md:max-w-7xl md:m-auto md:w-full"
+      >
+        <!-- Hero Text -->
+        <div
+          class="flex-1 flex flex-col space-y-4 items-center md:items-start justify-center text-center md:text-left"
+        >
+          <h2 class="font-hero1 text-3xl md:text-5xl text-headline1">
+            Share your thoughts. Stay anonymous. Join the Circle.
+          </h2>
+          <p class="text-paragraph1 text-base md:text-lg">
+            On PostCircle, your posts stay anonymous to everyone. Only members
+            of the Circle can see who wrote them.
+          </p>
+
+          <a
+            href="/posts"
+            class="bg-btn1-bg text-btn1-text inline-block px-6 py-3 rounded font-button2 text-base md:text-lg font-semibold"
+          >
+            View Posts
+          </a>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="flex-1 flex items-center justify-center">
+          <img
+            src="/images/hero-person2.png"
+            alt="hero illustration"
+            class="w-full md:w-auto"
+          />
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
