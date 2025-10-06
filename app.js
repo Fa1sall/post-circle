@@ -23,6 +23,9 @@ app.use(express.json());
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+const assetPath = join(__dirname, "public");
+app.use(express.static(assetPath));
+
 // ---------------- Session Setup ----------------
 
 const PgSession = connectPgSimple(session);
@@ -45,6 +48,13 @@ app.use(
 // ---------------- Passport Authentication ----------------
 
 app.use(passport.session());
+
+// debugging errors
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 
 // ---------------- Routes ----------------
 
