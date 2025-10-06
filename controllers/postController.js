@@ -5,7 +5,12 @@ export const renderPosts = async (req, res) => {
   const posts = await getAllPosts();
   const postsWithFormattedDate = posts.map((post) => ({
     ...post,
-    date: format(new Date(post.created_at), "MMM d yyyy, h:mm a"),
+    username:
+      req.isAuthenticated() && req.user.isMember ? post.username : "Anonymous",
+    date:
+      req.isAuthenticated() && req.user.isMember
+        ? format(new Date(post.created_at), "MMM d yyyy, h:mm a")
+        : "?????",
   }));
   console.log(postsWithFormattedDate);
   res.render("posts/postsPage", { posts: postsWithFormattedDate });
