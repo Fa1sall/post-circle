@@ -4,64 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PostCircle - Sign Up</title>
+    <link rel="icon" href="/images/logo-1.png" type="image/png" />
+    <link rel="stylesheet" href="/styles/output.css" />
   </head>
-  <body>
-    <div>
-      <h2>Sign Up</h2>
-      <form action="/auth/sign-up" method="post">
-        <label for="first_name">First Name</label>
-        <input
-          type="text"
-          name="first_name"
-          id="first_name"
-          maxlength="50"
-          required
-          value="<%= formData?.first_name || '' %>"
-        />
-        <%if(errors && errors["first_name"]){%>
-        <p><%= errors["first_name"].msg%></p>
-        <%}%>
-        <label for="last_name">Last Name</label>
-        <input
-          type="text"
-          name="last_name"
-          id="last_name"
-          maxlength="50"
-          required
-          value="<%= formData?.last_name || '' %>"
-        />
-        <%if(errors && errors["last_name"]){%>
-        <p><%= errors["last_name"].msg%></p>
-        <%}%>
-        <label for="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          maxlength="50"
-          required
-          value="<%= formData?.username || '' %>"
-        />
-        <%if(errors && errors["username"]){%>
-        <p><%= errors["username"].msg%></p>
-        <%}%>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required />
-        <%if(errors && errors["password"]){%>
-        <p><%= errors["password"].msg%></p>
-        <%}%>
-        <label for="confirm_password">Confirm Password</label>
-        <input
-          type="password"
-          name="confirm_password"
-          id="confirm_password"
-          required
-        />
-        <%if(errors && errors["confirm_password"]){%>
-        <p><%= errors["confirm_password"].msg%></p>
-        <%}%>
-        <button type="submit">Sign Up</button>
+  <body class="bg-bg1 min-h-screen flex items-center pt-12 sm:pt-16 px-4">
+    <a href="/" class="bg-ill-highlight text-card-heading1 rounded font-button2 text-base md:text-lg font-semibold px-4 py-2 absolute top-4 left-4 flex items-center gap-1">
+      <img src="/images/icons/home.png" alt="Home" class="w-3 sm:w-4 invert">
+      <span>Home</span>
+    </a>
+    <div class="bg-[#fdf8ec] text-card-heading2 py-6 px-10 sm:px-12 sm:max-w-4xl m-auto flex flex-col items-center rounded-xl overflow-hidden">
+      <h2 class="font-post-title2 text-3xl text-center mb-4 sm:mb-6">Sign Up</h2>
+      <form action="/auth/sign-up" method="post" class="flex flex-col gap-3 w-full max-w-lg sm:max-w-xl">
+        <div class="flex flex-col w-full">
+          <label for="first_name" class="font-body2 text-xl">First Name</label>
+          <input type="text" name="first_name" id="first_name" maxlength="50" required
+            value="<%= formData?.first_name || '' %>"
+            placeholder="Enter your first name"
+            class="bg-card-heading1 text-card1 caret-ill-highlight border-2 rounded border-bg1/25 outline-none focus:border-bg1/80 transition-all duration-200 ease-in-out px-3 py-2 w-full"
+          />
+          <%if(errors && errors["first_name"]){%>
+            <p class="text-red-500 font-badge1 font-bold mt-1 w-full break-words"><%= errors["first_name"].msg%></p>
+          <%}%>
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="last_name" class="font-body2 text-xl">Last Name</label>
+          <input type="text" name="last_name" id="last_name" maxlength="50" required
+            value="<%= formData?.last_name || '' %>"
+            placeholder="Enter your last name"
+            class="bg-card-heading1 text-card1 caret-ill-highlight border-2 rounded border-bg1/25 outline-none focus:border-bg1/80 transition-all duration-200 ease-in-out px-3 py-2 w-full"
+          />
+          <%if(errors && errors["last_name"]){%>
+            <p class="text-red-500 font-badge1 font-bold mt-1 w-full break-words"><%= errors["last_name"].msg%></p>
+          <%}%>
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="username" class="font-body2 text-xl">Username</label>
+          <input type="text" name="username" id="username" maxlength="50" required
+            value="<%= formData?.username || '' %>"
+            placeholder="Enter username"
+            class="bg-card-heading1 text-card1 caret-ill-highlight border-2 rounded border-bg1/25 outline-none focus:border-bg1/80 transition-all duration-200 ease-in-out px-3 py-2 w-full"
+          />
+          <%if(errors && errors["username"]){%>
+            <p class="text-red-500 font-badge1 font-bold mt-1 w-full break-words"><%= errors["username"].msg%></p>
+          <%}%>
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="password" class="font-body2 text-xl">Password</label>
+          <input type="password" name="password" id="password" required
+            placeholder="Enter your password"
+            class="bg-card-heading1 text-card1 caret-ill-highlight border-2 rounded border-bg1/25 outline-none focus:border-bg1/80 transition-all duration-200 ease-in-out px-3 py-2 w-full"
+          />
+          <%if(errors && errors["password"]){%>
+            <p class="text-red-500 font-badge1 font-bold mt-1 w-full break-words"><%= errors["password"].msg%></p>
+          <%}%>
+        </div>
+        <div class="flex flex-col w-full">
+          <label for="confirm_password" class="font-body2 text-xl">Confirm Password</label>
+          <input type="password" name="confirm_password" id="confirm_password" required
+            placeholder="Re-enter your password"
+            class="bg-card-heading1 text-card1 caret-ill-highlight border-2 rounded border-bg1/25 outline-none focus:border-bg1/80 transition-all duration-200 ease-in-out px-3 py-2 w-full"
+          />
+          <%if(errors && errors["confirm_password"]){%>
+            <p class="text-red-500 font-badge1 font-bold mt-1 w-full break-words"><%= errors["confirm_password"].msg%></p>
+          <%}%>
+        </div>
+        <div class="flex flex-col w-full">
+          <button type="submit" class="bg-btn1-bg text-btn1-text rounded font-button2 text-base md:text-lg font-semibold py-2 hover:opacity-90 cursor-pointer transition-all duration-100 ease-in w-full">Sign Up</button>
+        </div>
       </form>
+      <div class="flex flex-col w-full items-center mt-2">
+         <p class="font-body2 text-lg text-center">Already have an account? <a href="/auth/login" class="text-ill-highlight font-bold font-post-title1 text-base">Login</a></p>
+      </div>
     </div>
   </body>
 </html>
