@@ -1,19 +1,34 @@
-import { createPost, getAllPosts } from "../models/posts.js";
+import { createPost, getPosts, getTotalPosts } from "../models/posts.js";
 import { format } from "date-fns";
 
 export const renderPosts = async (req, res) => {
-  const posts = await getAllPosts();
+  const page = parseInt(req.query.page) || 1;
+  const limit = 10;
+  const offset = (page - 1) * limit;
+  const posts = await getPosts(limit, offset);
+  const totalPosts = await getTotalPosts();
+  const totalPages = Math.ceil(totalPosts / limit);
+
   const postsWithFormattedDate = posts.map((post) => ({
     ...post,
     username:
       req.isAuthenticated() && req.user.isMember ? post.username : "Anonymous",
-    date:
+    created_at:
       req.isAuthenticated() && req.user.isMember
         ? format(new Date(post.created_at), "MMM d yyyy, h:mm a")
         : "?????",
   }));
+  const username = req.user?.username || "Anonymous";
+  const isMember = req.user?.isMember || false;
   console.log(postsWithFormattedDate);
-  res.render("posts/postsPage", { posts: postsWithFormattedDate });
+  res.render("posts/postsPage", {
+    posts: postsWithFormattedDate,
+    page,
+    totalPages,
+    username,
+    isMember,
+    isLoggedIn: req.isAuthenticated(),
+  });
 };
 
 export const renderCreatePostPage = (req, res) => {

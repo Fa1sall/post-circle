@@ -4,19 +4,141 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Posts</title>
+    <link rel="icon" href="/images/logo-1.png" type="image/png" />
+    <link rel="stylesheet" href="/styles/output.css" />
   </head>
-  <body>
-    <h1>Posts</h1>
-    <a href="/posts/create">Create a Post</a>
+  <body class="min-h-screen w-full relative bg-[#0f0f23]">
+    <div
+      class="absolute inset-0 z-0"
+      style="
+        background-image: radial-gradient(
+          circle at 50% 50%,
+          rgba(245, 158, 11, 0.14) 0%,
+          rgba(245, 158, 11, 0.08) 25%,
+          rgba(245, 158, 11, 0.03) 35%,
+          transparent 50%
+        );
+        background-size: 100% 100%;
+      "
+    ></div>
+    <div class="relative z-10">
+      <!-- Navbar -->
+      <aside
+        class="flex justify-between items-center px-3 sm:px-6 py-4 bg-[#0f0f23] text-card-heading1 shadow-[0_4px_8px_rgba(245,158,11,0.25),0_2px_4px_rgba(245,158,11,0.15)]"
+      >
+        <div class="flex-1">
+          <a
+            href="/"
+            class="flex items-center max-w-[100px] bg-ill-tertiary text-card-heading1 rounded font-button2 text-base md:text-lg font-semibold px-4 py-2 gap-1"
+          >
+            <img
+              src="/images/icons/home.png"
+              alt="Home"
+              class="w-3 sm:w-4 invert"
+            />
+            <span>Home</span>
+          </a>
+        </div>
+        <h1
+          class="flex-1 justify-center text-center font-hero1 font-bold text-lg md:text-xl"
+        >
+          Posts
+        </h1>
+        <div class="flex flex-1 justify-end gap-2 items-center">
+          <img src="/images/avatar.png" alt="png" class="invert w-10 hidden sm:block" />
+          <%if(isLoggedIn){%>
+            <form action="/auth/logout" method="post">
+              <button class="cursor-pointer flex items-center gap-2 bg-ill-secondary rounded font-button2 text-base md:text-lg font-semibold px-4 py-2">Logout</button>
+            </form>
+          <%} else {%>
+            <a href="/auth/login" class="flex items-center gap-2 bg-ill-highlight rounded font-button2 text-base md:text-lg font-semibold px-4 py-2">Login</a>
+          <% } %>
+        </div>
+      </aside>
+      <main class="mt-4">
+        <div class="flex justify-end text-card-heading2 mb-4">
+          <a
+            href="/posts/create"
+            class="mr-4 flex items-center gap-2 bg-orange-400 rounded font-post-title3 text-base md:text-lg font-semibold px-4 py-2"
+          >
+            <span>Create post</span>
+            <img
+              src="/images/create.png"
+              alt="create post"
+              class="w-5 md:w-6"
+            />
+          </a>
+        </div>
 
-    <% if (posts.length === 0) { %>
-    <p>No posts yet.</p>
-    <% } else { %> <% posts.forEach(post => { %>
-    <div class="post">
-      <h2><%= post.title %></h2>
-      <p><%= post.body %></p>
-      <small>by <%= post.username %> at <%= post.date %></small>
+        <!-- Posts Grid -->
+        <div class="grid grid-cols-1 gap-5 place-items-center min-w-screen">
+          <% if(posts.length == 0) { %>
+            <p>No posts yet.</p>
+          <%} else {%>
+            <% posts.forEach(post => { %>
+              <div class="max-w-4xl w-full p-4 bg-card1 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 shadow-amber-500 border-t-[0.5px] border-1 border-amber-500">
+                <div class="flex items-start md:items-center mb-3 gap-3">
+                  <img 
+                  src="/images/avatar.png" 
+                  alt="avatar"
+                  class="invert w-10 h-10 md:w-12 md:h-12 rounded-full object-cover shrink-0">
+                  <div class="flex flex-col">
+                    <h2 class="font-username1 font-semibold text-sm md:text-base lg:text-lg text-ill-highlight">
+                      <span>@</span><span><%=post.username%></span>
+                    </h2>
+                    <p class="text-xs md:text-sm text-card-paragraph1">
+                      <span><%=post.created_at%></span>
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <h1 class="font-post-title1 text-lg md:text-2xl lg:text-3xl text-card-heading1 font-semibold break-words mb-2">
+                    <%=post.title%>
+                  </h1>
+                  <p class="font-body1 font-medium text-sm md:text-base lg:text-lg text-card-paragraph1 leading-relaxed break-words">
+                    <%=post.body%>
+                  </p>
+                </div>
+              </div>
+            <% }) }%>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center items-center mt-4 mb-2 gap-4">
+          <% if(page > 1) { %>
+            <a href="?page=<%=page-1%>"
+              class="flex items-center gap-2 bg-ill-highlight text-card-heading1 font-button2 font-semibold px-4 py-2 rounded hover:bg-orange-500 transition">
+              <span>&larr;</span>
+              <span>Prev</span>
+            </a>
+          <% } else { %>
+            <button
+            disabled
+            class="flex items-center gap-2 bg-ill-highlight text-card-heading1 font-button2 font-semibold px-4 py-2 rounded opacity-50 cursor-not-allowed">
+              <span>&larr;</span>
+              <span>Prev</span>
+            </button>
+          <%}%>
+          <p class="text-card-heading1 font-hero1 text-base">
+            Page <%=page%> of <%=totalPages%>
+          </p>
+          <%if (page < totalPages) {%>
+            <a href="?page=<%=page+1%>"
+              class="flex items-center gap-2 bg-ill-highlight text-card-heading1 font-button2 font-semibold px-4 py-2 rounded hover:bg-orange-500 transition">
+              <span>Next</span>
+              <span>&rarr;</span>
+            </a>
+          <%} else {%>
+            <button
+            disabled
+            class="flex items-center gap-2 bg-ill-highlight text-card-heading1 font-button2 font-semibold px-4 py-2 rounded opacity-50 cursor-not-allowed"
+            >
+              <span>Next</span>
+              <span>&rarr;</span>
+            </button>
+          <% } %>
+        </div>
+      </main>
     </div>
-    <% }) %> <% } %>
   </body>
 </html>
