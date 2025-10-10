@@ -67,10 +67,11 @@ app.use((err, req, res, next) => {
 
 // ---------------- Server ----------------
 
-app.listen(3000, (error) => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, (error) => {
   if (error) {
     console.log(error);
     throw error;
   }
-  console.log("Express App started at http://localhost:3000");
+  console.log(`Express App started at http://localhost:${PORT}`);
 });
