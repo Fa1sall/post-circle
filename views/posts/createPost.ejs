@@ -3,18 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create a Post</title>
+    <title>Create Post</title>
+    <link rel="icon" href="/images/logo-1.png" type="image/png" />
+    <link rel="stylesheet" href="/styles/output.css" />
   </head>
-  <body>
-    <div>
-      <h1>Create a post</h1>
-      <form action="/posts/create" method="post">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" required />
-        <label for="body">Body</label>
-        <textarea name="body" id="body"></textarea>
-        <button type="submit">Create Post</button>
-      </form>
+  <body class="min-h-screen w-full relative bg-[#0f0f23] overflow-x-hidden">
+    <div class="relative z-10">
+      <aside
+        class="flex justify-between items-center px-3 sm:px-6 py-4 bg-[#0f0f23] text-card-heading1 shadow-[0_4px_8px_rgba(245,158,11,0.25),0_2px_4px_rgba(245,158,11,0.15)]"
+      >
+        <div class="flex-1">
+          <a
+            href="/"
+            class="flex items-center max-w-[100px] bg-ill-tertiary text-card-heading1 rounded font-button2 text-base md:text-lg font-semibold px-4 py-2 gap-1"
+          >
+            <img src="/images/icons/home.png" alt="Home" class="w-3 sm:w-4 invert" />
+            <span>Home</span>
+          </a>
+        </div>
+        <h1 class="flex-1 justify-center text-center font-hero1 font-bold text-lg md:text-xl">
+          Create Post
+        </h1>
+        <div class="flex flex-1 justify-end gap-2 items-center">
+          <img src="/images/avatar.png" alt="png" class="invert w-10 hidden sm:block" />
+          <%if(isLoggedIn){%>
+            <form action="/auth/logout" method="post">
+              <button class="cursor-pointer flex items-center gap-2 bg-ill-secondary rounded font-button2 text-base md:text-lg font-semibold px-4 py-2">Logout</button>
+            </form>
+          <%} else {%>
+            <a href="/auth/login" class="flex items-center gap-2 bg-ill-highlight rounded font-button2 text-base md:text-lg font-semibold px-4 py-2">Login</a>
+          <% } %>
+        </div>
+      </aside>
+
+      <main class="mt-6 flex flex-col items-center px-4 sm:px-6">
+        <div class="w-full max-w-3xl p-8 bg-card1 rounded-xl shadow-lg border border-amber-500">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="font-post-title1 text-2xl md:text-3xl font-semibold text-card-heading1">Create a New Post</h2>
+            <a href="/posts" class="flex items-center gap-2 bg-ill-highlight text-card-heading1 rounded font-button2 text-sm md:text-base font-semibold px-4 py-2 hover:bg-orange-500 transition">
+              <span>&larr;</span> Back
+            </a>
+          </div>
+          <form action="/posts/create" method="post" class="flex flex-col gap-6">
+            <div class="flex flex-col">
+              <label for="title" class="font-body2 text-card-heading1 font-semibold mb-2 text-xl">Title</label>
+              <input type="text" name="title" id="title" required
+                placeholder="Enter your post title"
+                class="p-4 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 bg-[#17162b] text-card-heading1 placeholder-card-paragraph1"
+              />
+            </div>
+            <div class="flex flex-col">
+              <label for="body" class="font-body2 text-card-heading1 font-semibold mb-2 text-xl">Body</label>
+              <textarea name="body" id="body" rows="8"
+                placeholder="Write your post content here..."
+                class="p-4 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 bg-[#17162b] text-card-heading1 placeholder-card-paragraph1 resize-none"
+              ></textarea>
+            </div>
+            <button type="submit"
+              class="self-end bg-ill-tertiary text-card-heading1 rounded font-button2 text-base md:text-lg font-semibold px-6 py-3 hover:bg-orange-500 transition cursor-pointer"
+            >
+              Post
+            </button>
+          </form>
+        </div>
+      </main>
     </div>
   </body>
 </html>

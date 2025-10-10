@@ -2,10 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Error Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <link rel="stylesheet" href="/styles/output.css" />
   </head>
-  <body>
-    <h1>Something went wrong!</h1>
-    <pre><%= message %></pre>
+  <body
+    class="min-h-screen w-full bg-[#0f0f23] flex items-center justify-center relative overflow-hidden"
+  >
+    <div class="relative z-10 text-center px-6">
+      <h1
+        class="text-6xl md:text-8xl font-hero1 font-bold text-card-heading1 mb-4"
+      >
+        Error
+      </h1>
+      <h2 class="text-2xl md:text-3xl font-body1 text-card-paragraph1 mb-4">
+        Something went wrong!
+      </h2>
+      <pre
+        class="bg-card1 text-card-paragraph1 p-4 rounded-lg shadow-md max-w-lg mx-auto overflow-x-auto break-words mb-6"
+      >
+<%= message %></pre
+      >
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 bg-ill-highlight hover:bg-orange-500 transition rounded px-6 py-3 font-button2 text-lg text-card-heading1 shadow-[0_4px_10px_rgba(245,158,11,0.3)]"
+      >
+        <img src="/images/icons/home.png" alt="Home" class="w-5 invert" />
+        Back to Home
+      </a>
+    </div>
+    <div
+      class="absolute inset-0 z-0"
+      style="
+        background-image: radial-gradient(
+          circle at 50% 50%,
+          rgba(245, 158, 11, 0.14) 0%,
+          rgba(245, 158, 11, 0.08) 25%,
+          rgba(245, 158, 11, 0.03) 35%,
+          transparent 50%
+        );
+        background-size: 100% 100%;
+      "
+    ></div>
   </body>
 </html>

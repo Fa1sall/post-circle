@@ -3,12 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Error - 404 page</title>
+    <title>Error - 404</title>
+    <link rel="stylesheet" href="/styles/output.css" />
   </head>
-  <body>
-    <div>
-      <h2>Error - 404</h2>
-      <p>Oops! The page you were looking for doesn't exist</p>
-      <a href="/">Back to Home Page</a>
+  <body
+    class="min-h-screen w-full bg-[#0f0f23] flex items-center justify-center relative overflow-hidden"
+  >
+    <div class="relative z-10 text-center px-6">
+      <h1
+        class="text-6xl md:text-8xl font-hero1 font-bold text-card-heading1 mb-4"
+      >
+        404
+      </h1>
+      <h2 class="text-2xl md:text-3xl font-body1 text-card-paragraph1 mb-6">
+        Oops! The page you were looking for doesn't exist.
+      </h2>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 bg-ill-highlight hover:bg-orange-500 transition rounded px-6 py-3 font-button2 text-lg text-card-heading1 shadow-[0_4px_10px_rgba(245,158,11,0.3)]"
+      >
+        <img src="/images/icons/home.png" alt="Home" class="w-5 invert" />
+        Back to Home
+      </a>
+    </div>
   </body>
 </html>
