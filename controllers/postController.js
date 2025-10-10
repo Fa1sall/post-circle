@@ -11,28 +11,24 @@ export const renderPosts = async (req, res) => {
 
   const postsWithFormattedDate = posts.map((post) => ({
     ...post,
-    username:
-      req.isAuthenticated() && req.user.isMember ? post.username : "Anonymous",
-    created_at:
-      req.isAuthenticated() && req.user.isMember
-        ? format(new Date(post.created_at), "MMM d yyyy, h:mm a")
-        : "?????",
+    username: req.isAuthenticated() ? post.username : "Anonymous",
+    created_at: req.isAuthenticated()
+      ? format(new Date(post.created_at), "MMM d yyyy, h:mm a")
+      : "?????",
   }));
   const username = req.user?.username || "Anonymous";
-  const isMember = req.user?.isMember || false;
-  console.log(postsWithFormattedDate);
+  //console.log(postsWithFormattedDate);
   res.render("posts/postsPage", {
     posts: postsWithFormattedDate,
     page,
     totalPages,
     username,
-    isMember,
     isLoggedIn: req.isAuthenticated(),
   });
 };
 
 export const renderCreatePostPage = (req, res) => {
-  res.render("posts/createPost");
+  res.render("posts/createPost", { isLoggedIn: req.isAuthenticated() });
 };
 
 export const handleCreatePost = async (req, res) => {
