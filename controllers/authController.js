@@ -66,6 +66,6 @@ export const handleLogout = async (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    res.redirect("/posts");
   });
 };
