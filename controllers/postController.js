@@ -1,4 +1,9 @@
-import { createPost, getPosts, getTotalPosts } from "../models/posts.js";
+import {
+  createPost,
+  getPosts,
+  getTotalPosts,
+  deletePost,
+} from "../models/posts.js";
 import { format } from "date-fns";
 
 export const renderPosts = async (req, res) => {
@@ -17,6 +22,7 @@ export const renderPosts = async (req, res) => {
       : "?????",
   }));
   const username = req.user?.username || "Anonymous";
+  const isAdmin = req.user?.isadmin || false;
   //console.log(postsWithFormattedDate);
   res.render("posts/postsPage", {
     posts: postsWithFormattedDate,
@@ -24,6 +30,7 @@ export const renderPosts = async (req, res) => {
     totalPages,
     username,
     isLoggedIn: req.isAuthenticated(),
+    isAdmin,
   });
 };
 
@@ -35,5 +42,11 @@ export const handleCreatePost = async (req, res) => {
   const { title, body } = req.body;
   const user_id = req.user.id;
   await createPost(user_id, title, body);
+  res.redirect("/posts");
+};
+
+export const handleDeletePost = async (req, res) => {
+  const id = req.params.id;
+  await deletePost(id);
   res.redirect("/posts");
 };

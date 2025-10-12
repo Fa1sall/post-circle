@@ -1,7 +1,7 @@
 import pool from "../config/database.js";
 
 export const getPosts = async (offset, limit) => {
-  const query = `SELECT u.username, p.title, p.body, p.created_at 
+  const query = `SELECT u.username, p.id, p.title, p.body, p.created_at 
      FROM users AS u INNER JOIN posts AS p 
      ON u.id = p.user_id
      ORDER BY p.created_at DESC
@@ -19,4 +19,9 @@ export const getTotalPosts = async () => {
 export const createPost = async (user_id, title, body) => {
   const query = `INSERT INTO posts(user_id, title, body) values ($1,$2,$3);`;
   await pool.query(query, [user_id, title, body]);
+};
+
+export const deletePost = async (id) => {
+  const query = `DELETE FROM posts WHERE id = $1;`;
+  await pool.query(query, [id]);
 };

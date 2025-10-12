@@ -50,11 +50,13 @@ app.use(
 app.use(passport.session());
 
 // debugging errors
+/*
 app.use((req, res, next) => {
   console.log(req.session);
   console.log(req.user);
   next();
 });
+*/
 
 // ---------------- Routes ----------------
 

@@ -79,7 +79,8 @@
           <%} else {%>
             <% posts.forEach(post => { %>
               <div class="max-w-4xl w-full p-4 bg-card1 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 shadow-amber-500 border-t-[0.5px] border-1 border-amber-500">
-                <div class="flex items-start md:items-center mb-3 gap-3">
+                <div class="flex justify-between">
+                  <div class="flex items-start md:items-center mb-3 gap-3">
                   <img 
                   src="/images/avatar.png" 
                   alt="avatar"
@@ -92,6 +93,12 @@
                       <span><%=post.created_at%></span>
                     </p>
                   </div>
+                </div>
+                <%if(isAdmin){%>
+                  <form action="/posts/delete/<%=post.id%>" method="post">
+                    <button type="submit" class="cursor-pointer bg-red-600 text-white rounded font-button2 text-base md:text-lg font-semibold px-4 py-2">Delete</button>
+                  </form>
+                <%}%>
                 </div>
                 <div>
                   <h1 class="font-post-title1 text-lg md:text-2xl lg:text-3xl text-card-heading1 font-semibold break-words mb-2">
