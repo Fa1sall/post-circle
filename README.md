@@ -115,7 +115,7 @@ npm install
 
 ```bash
 DATABASE_URL="postgresql://username:password@host:port/database_name"
-SESSION_SECRET="your-session-secret"
+SECRET="your-session-secret"
 ```
 
 Replace username, password, host, port, and database_name with your PostgreSQL credentials.
