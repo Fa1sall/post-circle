@@ -2,8 +2,6 @@
 
 **Post Circle** is a simple posting web application built with **Node.js**, **Express**, **EJS**, and **PostgreSQL**, allowing users to sign up, log in, create posts, and view community posts in a clean and minimal UI. It demonstrates session-based authentication, role-based access, and conditional content rendering - where only logged-in users can see the author and timestamp of posts, while visitors can only view anonymous posts.
 
-🔗 **Live Site:** [https://post-circle.onrender.com/](https://post-circle.onrender.com/)
-
 ## ✨ Features
 
 - Home Page with a posts feed
@@ -101,7 +99,7 @@ Follow these steps to run the project locally:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/PostCircle.git
+git clone https://github.com/Fa1sall/post-circle.git
 cd PostCircle
 ```
 
